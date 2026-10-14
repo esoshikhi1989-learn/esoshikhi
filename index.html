@@ -1,0 +1,689 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Eso Shikhi | Learning never stops</title>
+  <!-- Google Fonts & simple CSS reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefcf5;   /* warm off-white background like paper */
+      color: #1a2a3a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header & navigation */
+    .site-header {
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(0px);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0b3b5f, #1e6f5c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .logo p {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #5f7f6e;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-weight: 600;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2c3e4e;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover {
+      color: #6f1e31;
+    }
+
+    /* Buttons & common */
+    .btn-primary {
+      background: #1e6f5c;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #0e4f41;
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1e6f5c;
+      color: #1e6f5c;
+      padding: 0.6rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-outline:hover {
+      background: #1e6f5c10;
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem 0;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #0a2f2a;
+    }
+    .hero h2 span {
+      background: linear-gradient(120deg, #1e6f5c, #2c9b82);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+      color: #3a5a60;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* section common */
+    .section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #e9e2d4;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #174339;
+    }
+    .section-sub {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #527a6e;
+    }
+
+    /* cards grid (articles) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem;
+      box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.08);
+      transition: all 0.25s ease;
+      border: 1px solid #f0ebdf;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 32px -16px rgba(0, 0, 0, 0.12);
+    }
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      color: #445c66;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .read-more {
+      font-weight: 600;
+      color: #1e6f5c;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      align-self: flex-start;
+    }
+    .read-more i {
+      transition: transform 0.2s;
+    }
+    .read-more:hover i {
+      transform: translateX(4px);
+    }
+
+    /* watch & learn: video row + categories */
+    .video-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .featured-video {
+      flex: 1.4;
+      background: #2f5a4e15;
+      border-radius: 32px;
+      padding: 2rem;
+      text-align: center;
+      background: #eef4f0;
+      cursor: pointer;
+    }
+    .video-placeholder {
+      background: #cfe4db;
+      border-radius: 24px;
+      padding: 3rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .video-placeholder i {
+      font-size: 3rem;
+      color: #1e6f5c;
+    }
+    .video-categories {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .cat-item {
+      background: white;
+      border-radius: 20px;
+      padding: 1.2rem;
+      text-align: center;
+      font-weight: 600;
+      transition: 0.2s;
+      border: 1px solid #e3dbc9;
+      cursor: pointer;
+    }
+    .cat-item i {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: #1e6f5c;
+    }
+    .cat-item:hover {
+      background: #1e6f5c08;
+      border-color: #1e6f5c;
+    }
+    .view-all-btn {
+      text-align: right;
+      margin-top: 2rem;
+    }
+
+    /* AI Interactive Corner */
+    .ai-corner {
+      background: linear-gradient(120deg, #f9f3e7, #fff7ef);
+      border-radius: 40px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-text {
+      flex: 1;
+    }
+    .ai-text h3 {
+      font-size: 1.9rem;
+      font-weight: 700;
+    }
+    .ai-demo {
+      flex: 1;
+      background: white;
+      border-radius: 32px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 18px -8px rgba(0,0,0,0.05);
+    }
+    .ai-ask {
+      display: flex;
+      gap: 12px;
+      margin: 1rem 0;
+    }
+    .ai-ask input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 60px;
+      border: 1px solid #ddd2be;
+      font-family: inherit;
+    }
+    .ai-response {
+      background: #f0f4f1;
+      border-radius: 20px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    /* meet bikram */
+    .about-bikram {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      background: white;
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    .bikram-avatar {
+      background: #1e6f5c20;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #1e6f5c;
+    }
+    .bikram-info {
+      flex: 1;
+    }
+    /* contact form */
+    .contact-form {
+      background: #ffffffdd;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e0d5c2;
+      border-radius: 60px;
+      font-family: inherit;
+      background: #fffdf9;
+    }
+    .form-group textarea {
+      border-radius: 24px;
+      resize: vertical;
+    }
+    .footer {
+      background: #14342b;
+      color: #e0e7e3;
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #c7ded6;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    hr {
+      border-color: #2b5b4e;
+    }
+    @media (max-width: 780px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      .video-showcase {
+        flex-direction: column;
+      }
+      .ai-corner {
+        flex-direction: column;
+      }
+    }
+    button, input {
+      outline: none;
+    }
+    .article-meta {
+      font-size: 0.8rem;
+      color: #7c9a8c;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <h1>Eso Shikhi</h1>
+        <p>LET'S LEARN · Learning never stops</p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">AI Learning Hub</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <!-- Hero section: Knowledge for Everyone, from 8 to 80 -->
+    <div class="hero">
+      <h2>Knowledge for Everyone, <span>from 8 to 80</span></h2>
+      <p>Explore education, finance, and AI in simple, engaging ways.</p>
+      <div class="hero-buttons">
+        <a href="#articles" class="btn-primary"><i class="fas fa-book-open"></i> Read Articles</a>
+        <a href="#" class="btn-primary" style="background:#3c7a68;"><i class="fas fa-play-circle"></i> Watch Videos</a>
+        <a href="#" class="btn-outline"><i class="fas fa-robot"></i> Try AI Learning</a>
+      </div>
+    </div>
+
+    <!-- Latest Insights & Articles (with real article links) -->
+    <div id="articles" class="section">
+      <h2 class="section-title">Latest Insights & Articles</h2>
+      <div class="cards-grid">
+        <!-- Article 1: Fishing in Hong Kong -->
+        <div class="card">
+          <h3>🎣 Charlotte (Noth Carolina )</h3>
+          <p>This is an experience in snowy day in Charlotte USA NOrth carolina . This isfor nature and travel lovers.</p>
+          <div class="article-meta"><i class="fas fa-map-marker-alt"></i> Hong Kong · Outdoor</div>
+          <a href="https://allfrom1.blogspot.com/2016/03/charlottenc-biggest-city-in-north_13.html?spref=tw&m=1" target="_blank" rel="noopener noreferrer" class="read-more">Read Full Guide <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Article 2: Tripadvisor Restaurants (though 403, we link anyway) -->
+        <div class="card">
+          <h3>🍜 Best Restaurants in Hong Kong</h3>
+          <p>Discover top-rated eateries, local dim sum, and international flavors curated by real travelers. Your ultimate culinary guide to Hong Kong's vibrant food scene.</p>
+          <div class="article-meta"><i class="fas fa-utensils"></i> Food & Dining · TripAdvisor</div>
+          <a href="https://www.tripadvisor.com/Restaurants-g294217-c24-Hong_Kong.html" target="_blank" rel="noopener noreferrer" class="read-more">Explore Restaurants <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <!-- Article 3: China Highlights Top 30 Things to Do -->
+        <div class="card">
+          <h3>🏙️ Top 30 Things to Do in Hong Kong</h3>
+          <p>From Victoria Peak to Disneyland, this comprehensive travel list covers must-visit attractions, hidden gems, and local experiences across the city.</p>
+          <div class="article-meta"><i class="fas fa-star"></i> Travel · Attractions</div>
+          <a href="https://www.chinahighlights.com/hong-kong/top-things-to-do.htm" target="_blank" rel="noopener noreferrer" class="read-more">Discover Attractions <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Watch & Learn section -->
+    <div class="section">
+      <h2 class="section-title">Watch & Learn</h2>
+      <div class="video-showcase">
+        <div class="featured-video">
+          <div class="video-placeholder">
+            <i class="fas fa-play-circle fa-4x"></i>
+            <p style="margin-top: 12px; font-weight: 600;">Featured Lesson: Financial Literacy 101</p>
+            <small>Click to preview</small>
+          </div>
+          <p><strong>Featured Lesson Here</strong> — Master key concepts with animated explainers.</p>
+        </div>
+        <div class="video-categories">
+          <div class="cat-item"><i class="fas fa-graduation-cap"></i> Education</div>
+          <div class="cat-item"><i class="fas fa-chart-line"></i> Share Market</div>
+          <div class="cat-item"><i class="fas fa-microchip"></i> AI Tutorials</div>
+          <div class="cat-item"><i class="fas fa-globe"></i> General Knowledge</div>
+        </div>
+      </div>
+      <div class="view-all-btn">
+        <a href="#" class="btn-outline"><i class="fas fa-eye"></i> View All Videos</a>
+      </div>
+    </div>
+
+    <!-- Interactive AI Corner (with live demo) -->
+    <div class="section">
+      <h2 class="section-title">Interactive AI Corner</h2>
+      <div class="ai-corner">
+        <div class="ai-text">
+          <h3>✨ Ask questions & explore AI demos</h3>
+          <p>Curious about machine learning, smart tools, or just want a fun AI chat? Try our simple AI assistant demo below.</p>
+          <a href="#" class="btn-primary" style="margin-top: 12px; display: inline-block;"><i class="fas fa-brain"></i> Start Learning with AI</a>
+        </div>
+        <div class="ai-demo">
+          <p><strong><i class="fas fa-comment-dots"></i> AI Buddy (simulated)</strong></p>
+          <div class="ai-ask">
+            <input type="text" id="aiQuestion" placeholder="e.g., What is share market? Or tell me a fun fact">
+            <button id="askAiBtn" class="btn-primary" style="padding: 0.6rem 1.2rem;">Ask</button>
+          </div>
+          <div id="aiReplyBox" class="ai-response">
+            💡 Hello! Ask me anything about learning, finance, or AI.
+          </div>
+          <small style="color:#6c8f82;">✨ Simple AI demo — try 'basics of stock', 'AI education', or 'math tip'</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meet Bikram -->
+    <div class="section">
+      <h2 class="section-title">Meet Bikram</h2>
+      <div class="about-bikram">
+        <div class="bikram-avatar">
+          <i class="fas fa-chalkboard-user fa-3x"></i>
+        </div>
+        <div class="bikram-info">
+          <h3>Bikram — Founder & Educator</h3>
+          <p>Bikram is passionate about making learning accessible for everyone. With over a decade of experience in ed-tech, finance literacy, and AI, he believes that knowledge should be joyful, practical, and never stop. "Eso Shikhi" means "Come, let's learn" — and that's the open invitation to every curious mind.</p>
+          <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="63010a0811020e2306100c100b0a080b0a4d000c0e">[email&#160;protected]</a>  ·  <i class="fab fa-linkedin"></i> Connect on LinkedIn</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stay Connected Form -->
+    <div class="section" id="contact">
+      <h2 class="section-title">Stay Connected</h2>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" id="contactName" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Email Address" id="contactEmail" required>
+          </div>
+          <div class="form-group">
+            <textarea rows="3" placeholder="Your Message..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+        <p id="formFeedback" style="margin-top: 1rem; font-size: 0.85rem; text-align: center; color: #1e6f5c;"></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#articles">Articles</a>
+      <a href="#">Videos</a>
+      <a href="#">AI Hub</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>© 2026 Eso Shikhi - Learning never stops.</p>
+    <p style="margin-top: 8px; font-size: 0.8rem;"><i class="fas fa-heart" style="color:#e4b363;"></i> Knowledge for all ages</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // AI corner demo (simulated, rule-based responses)
+  const askBtn = document.getElementById('askAiBtn');
+  const questionInput = document.getElementById('aiQuestion');
+  const replyBox = document.getElementById('aiReplyBox');
+
+  function getAIResponse(question) {
+    if (!question) return "✨ Ask me something! Try 'What is AI?', 'Share market basics', or 'Math made easy'.";
+    const q = question.toLowerCase();
+    if (q.includes('share market') || q.includes('stock') || q.includes('trading')) {
+      return "📊 Share Market basics: Stocks represent ownership in a company. You can buy/sell via exchanges. Learn about bull/bear markets, SIP, and more in our articles!";
+    } else if (q.includes('ai') && (q.includes('what') || q.includes('education'))) {
+      return "🤖 AI (Artificial Intelligence) mimics human intelligence. In everyday life: recommendations, voice assistants, smart cars. At Eso Shikhi, we simplify AI for everyone!";
+    } else if (q.includes('math') || q.includes('easy') || q.includes('tip')) {
+      return "🧮 Math Made Easy: Try breaking numbers, use visual models, and practice mental math daily. We have fun lessons to make math enjoyable!";
+    } else if (q.includes('fun fact')) {
+      return "🌟 Fun Fact: The first computer programmer was Ada Lovelace in the 1840s! She envisioned machines could do more than just calculations.";
+    } else if (q.includes('hello') || q.includes('hi')) {
+      return "👋 Hello there! Keep learning something new every day. How can I assist you?";
+    } else if (q.includes('hong kong') || q.includes('travel') || q.includes('fishing')) {
+      return "🏙️ Speaking of Hong Kong! Check out our latest articles on fishing spots, top attractions, and delicious restaurants — perfect for curious travelers!";
+    } else {
+      return "💡 Great question! Explore our AI Learning Hub for deeper insights. (Tip: ask 'share market', 'AI education', or 'math tip')";
+    }
+  }
+
+  askBtn.addEventListener('click', () => {
+    const userQuestion = questionInput.value.trim();
+    if (userQuestion === "") {
+      replyBox.innerHTML = "🤔 Please type a question! Example: 'What is AI?'";
+      return;
+    }
+    const botReply = getAIResponse(userQuestion);
+    replyBox.innerHTML = `<i class="fas fa-robot"></i> ${botReply}`;
+    questionInput.value = '';
+  });
+
+  questionInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      askBtn.click();
+    }
+  });
+
+  // Contact form submission simulation
+  const contactForm = document.getElementById('contactForm');
+  const formFeedback = document.getElementById('formFeedback');
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    if (!name || !email) {
+      formFeedback.innerHTML = '⚠️ Please fill your name and email.';
+      formFeedback.style.color = '#b1624b';
+      setTimeout(() => { formFeedback.innerHTML = ''; }, 2500);
+      return;
+    }
+    formFeedback.innerHTML = `✅ Thanks ${name}! We'll get back to you soon.`;
+    formFeedback.style.color = '#1e6f5c';
+    contactForm.reset();
+    setTimeout(() => {
+      formFeedback.innerHTML = '';
+    }, 4000);
+  });
+
+  // Video category interactive alerts
+  const catItems = document.querySelectorAll('.cat-item');
+  catItems.forEach(cat => {
+    cat.addEventListener('click', () => {
+      const catName = cat.innerText.trim();
+      alert(`🎬 "${catName}" videos coming soon! Stay tuned for amazing lessons.`);
+    });
+  });
+  
+  // Featured video placeholder alert
+  const featuredVideoDiv = document.querySelector('.featured-video');
+  if (featuredVideoDiv) {
+    featuredVideoDiv.addEventListener('click', (e) => {
+      if (e.target.closest('.video-placeholder') || e.target.closest('.featured-video')) {
+        alert('🎥 Preview: Financial Literacy 101 - Learn to manage money wisely. Full video available in Video Library.');
+      }
+    });
+  }
+  
+  // Smooth scroll for article section
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === "#" || href === "") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"54d2f915cf7f42709b6a4b1220f9f4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
